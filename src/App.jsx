@@ -11,17 +11,17 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    /** Scroll Reveal */
+    /** Change Active Link */
     const sections = document.querySelectorAll("section[id]");
 
-    const scrollActive = () => {
+    function scrollActive() {
       const scrollY = window.scrollY;
       sections.forEach((current) => {
-        const sectionHeight = current.offsetHight,
+        const sectionHeight = current.offsetHeight,
           sectionTop = current.offsetTop - 50,
-          secrionId = current.getAttribute("id");
+          sectionId = current.getAttribute("id");
 
-        if (scrollY > sectionTop && scrollY <= sectionsTop + sectionHeight) {
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
           document
             .querySelector(".nav-menu a[href*=" + sectionId + "]")
             .classList.add("active-link");
@@ -31,7 +31,7 @@ function App() {
             .classList.remove("active-link");
         }
       });
-    };
+    }
     const sr = ScrollReveal({
       origin: "top",
       distance: "80px",
@@ -39,10 +39,39 @@ function App() {
       reset: true,
     });
 
-    //Home
-    sr.reveal(".featrue-text-card", {});
-    sr.reveal(".featrue-name", { delay: 100 });
-    sr.reveal(".featrue-text-card", {});
+    //Feature Box
+    sr.reveal(".featured-text-card", {});
+    sr.reveal(".featured-name", { delay: 100 });
+    sr.reveal(".featured-text-info", { delay: 200 });
+    sr.reveal(".featured-text-btn", { delay: 200 });
+    sr.reveal(".social_icons", { delay: 100 });
+    sr.reveal(".featured-image", { delay: 200 });
+
+    //Project Box
+    sr.reveal(".project-box", { interval: 200 });
+
+    //Heading
+    sr.reveal(".top-header", {});
+
+    //Left-right Animation // อนิเมะชั่น
+    const srLeft = ScrollReveal({
+      origin: "left",
+      distance: "80px",
+      duration: 2000,
+      reset: true,
+    });
+
+    srLeft.reveal(".about-info", { delay: 200 });
+    srLeft.reveal(".contact-info", { delay: 100 });
+
+    const srRight = ScrollReveal({
+      origin: "left",
+      distance: "80px",
+      duration: 2000,
+      reset: true,
+    });
+    srRight.reveal(".skills-box", { delay: 100 });
+    srRight.reveal(".form-control", { delay: 100 });
 
     window.addEventListener("scroll", scrollActive);
     /** Type Effect */
